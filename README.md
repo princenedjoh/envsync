@@ -1,16 +1,20 @@
 # envsync
 
-[![npm](https://img.shields.io/npm/v/envsync)](https://www.npmjs.com/package/envsync)
+[![npm](https://img.shields.io/npm/v/@princenedjoh/envsync)](https://www.npmjs.com/package/@princenedjoh/envsync)
 [![CI](https://github.com/princenedjoh/envsync/actions/workflows/ci.yml/badge.svg)](https://github.com/princenedjoh/envsync/actions/workflows/ci.yml)
 
 Validate `.env` files against `.env.example`, keep them in sync, and check every app in a monorepo. Zero dependencies.
 
 ```sh
-npx envsync check          # validate .env against .env.example
-npx envsync scan .         # check every app under a monorepo root
-npx envsync diff           # keys that exist on only one side
-npx envsync sync           # regenerate .env.example from .env (values blanked)
-npx envsync fill           # add keys missing from .env, using example defaults
+npm i -g @princenedjoh/envsync   # installs the `envsync` command
+```
+
+```sh
+npx @princenedjoh/envsync check          # validate .env against .env.example
+npx @princenedjoh/envsync scan .         # check every app under a monorepo root
+npx @princenedjoh/envsync diff           # keys that exist on only one side
+npx @princenedjoh/envsync sync           # regenerate .env.example from .env (values blanked)
+npx @princenedjoh/envsync fill           # add keys missing from .env, using example defaults
 ```
 
 ```
@@ -84,18 +88,18 @@ Exit codes: `0` ok (warnings allowed), `1` a check failed, `2` usage error.
 
 ```yaml
 # GitHub Actions
-- run: npx envsync scan --no-git-check --example .env.example --env .env.ci
+- run: npx @princenedjoh/envsync scan --no-git-check --example .env.example --env .env.ci
 ```
 
 ```sh
 # .husky/pre-commit
-npx envsync scan -q
+npx @princenedjoh/envsync scan -q
 ```
 
 ## API
 
 ```ts
-import { parseEnv, checkEnv, hasFailures } from "envsync";
+import { parseEnv, checkEnv, hasFailures } from "@princenedjoh/envsync";
 
 const issues = checkEnv(parseEnv(exampleText), parseEnv(envText), { strict: true });
 if (hasFailures(issues)) process.exit(1);

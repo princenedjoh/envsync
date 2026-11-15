@@ -1,5 +1,5 @@
 {
-  "name": "envsync",
+  "name": "@princenedjoh/envsync",
   "version": "0.1.0",
   "description": "Validate .env files against .env.example, keep them in sync, and check every app in a monorepo.",
   "keywords": [
